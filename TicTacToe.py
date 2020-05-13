@@ -37,15 +37,15 @@ def winner(lines):
             end += 1
         if line.count("x") == 3:
             print('Player 1 wins!')
-            return input("Want to play again? (True/False")
+            return False
         elif line.count("o") == 3:
             print('Player 2 wins!')
-            return input("Want to play again? (True/False")
+            return False
         else:
             continue
     if end == 8:
         print('Its a tie!')
-        return input("Want to play again? (True/False")
+        return False
     return True
 
 
@@ -67,6 +67,10 @@ if __name__ == '__main__':
         if game[a-1][b-1] == " ":
             game[a-1][b-1] = dic[player]
             playing = winner(create_lines(game))
+            if not playing:
+                playing = input("Want to play again? (True/False): ")
+                if playing:
+                    game = [[" ", " ", " "], [" ", " ", " "], [" ", " ", " "]]
             if player == 1:
                 player = 2
             else:
